@@ -5,11 +5,11 @@ set -u
 trap "exit 1" TERM
 export TOP_PID=$$
 
-: "${WFC_REPO:=wkchen/resin-wifi-connect}"
+: "${WFC_REPO:=resin-io/resin-wifi-connect}"
 : "${WFC_INSTALL_ROOT:=/usr/local}"
 
-SCRIPT='ubuntu-install.sh'
-NAME='WiFi Connect Ubuntu Installer'
+SCRIPT='raspbian-install.sh'
+NAME='WiFi Connect Raspbian Installer'
 
 INSTALL_BIN_DIR="$WFC_INSTALL_ROOT/sbin"
 INSTALL_UI_DIR="$WFC_INSTALL_ROOT/share/wifi-connect/ui"
@@ -69,16 +69,18 @@ check_os_version() {
         _version=$(grep -oP 'VERSION="\K[^"]+' /etc/os-release)
     fi
 
-    #if [ "$_version" != "9 (stretch)" ]; then
-    #    err "Distribution not based on Debian 9 (stretch)"
-    #fi
+    # if [ "$_version" != "9 (stretch)" ]; then
+    #     err "Distribution not based on Debian 9 (stretch)"
+    # fi
+
+    say "Version is $(_version)"
 }
 
 activate_network_manager() {
     if [ "$(service_load_state NetworkManager)" = "not-found" ]; then
         say 'NetworkManager is not installed'
 
-        confirm_installations
+        confirm_installation
 
         # Do not install NetworkManager over running dhcpcd to avoid clashes
 
