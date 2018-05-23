@@ -8,8 +8,8 @@ export TOP_PID=$$
 : "${WFC_REPO:=resin-io/resin-wifi-connect}"
 : "${WFC_INSTALL_ROOT:=/usr/local}"
 
-SCRIPT='raspbian-install.sh'
-NAME='WiFi Connect Raspbian Installer'
+SCRIPT='ubuntu-install.sh'
+NAME='WiFi Connect Ubuntu Installer'
 
 INSTALL_BIN_DIR="$WFC_INSTALL_ROOT/sbin"
 INSTALL_UI_DIR="$WFC_INSTALL_ROOT/share/wifi-connect/ui"
